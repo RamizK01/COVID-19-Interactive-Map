@@ -111,6 +111,14 @@ leaflet(merged_data) %>%
 
 ui <- fluidPage(
   
+  tags$head(
+    tags$style(HTML("
+      body { 
+        background-color: #E6E6FA;
+      }
+    "))
+  ),
+  
   titlePanel(
     tags$div(
       tags$h1("Interactive COVID-19 stat-tracker", style = "color: blue; font-family: Arial; font-size: 30px;"),
@@ -124,13 +132,14 @@ ui <- fluidPage(
   
   mainPanel(
     leafletOutput(outputId = 'map')
-  ),
-  
+  ,
+  br(),
+  tags$i('By Ramiz Khan', style = "fonts-size: 20px;"),
   tags$p(
-    tags$a(href = "https://github.com/your-username/your-repo", 
+    tags$a(href = "https://github.com/RamizK01/COVID-19-Interactive-Map", 
            target = "_blank", 
            "View the Source Code on GitHub")
-  )
+  ))
   
 )
 
