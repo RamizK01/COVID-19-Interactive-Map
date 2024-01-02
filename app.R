@@ -111,8 +111,25 @@ leaflet(merged_data) %>%
 
 ui <- fluidPage(
   
+  titlePanel(
+    tags$div(
+      tags$h1("Interactive COVID-19 stat-tracker", style = "color: blue; font-family: Arial; font-size: 30px;"),
+      tags$p('Using data from the World Health Organization and the wbstats package in R, We are able to calculate three
+             primary measures (presented as fractions)', style = "font-size: 18px;"),
+      tags$p(tags$b('Case Fatality Rate'), ' - Number of COVID-19 cases that resulted in death', style = "font-size: 18px;"),
+      tags$p(tags$b('Mortality'), ' - Number of deaths per total population', style = "font-size: 18px;"),
+      tags$p(tags$b('Prevalence'), ' - Number of cases per population', style = "font-size: 18px;")
+      )
+    ),
+  
   mainPanel(
     leafletOutput(outputId = 'map')
+  ),
+  
+  tags$p(
+    tags$a(href = "https://github.com/your-username/your-repo", 
+           target = "_blank", 
+           "View the Source Code on GitHub")
   )
   
 )
@@ -129,7 +146,7 @@ server <- function(input, output, session) {
                   fillOpacity = 0.5,
                   color = "white",
                   weight = 1,
-                  popup = ~paste("Country: ", name, "<br>",
+                  popup = ~paste(name, "<br>",
                                  "Mortality Rate: ", V2, "<br>",
                                  "Case Fatality Rate: ", V3, "<br>",
                                  "Prevalence: ", V4)) %>%
